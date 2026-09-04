@@ -61,7 +61,7 @@ def generate_launch_description():
     )
     #7.joint state publisher
     node_joint_state_publisher = Node(
-            package='robot_joint_publisher',
+            package='joint_state_publisher',
             executable='joint_state_publisher',
             output='screen',
             parameters=[{'use_sim_time': True}]
