@@ -47,7 +47,7 @@ def generate_launch_description():
             '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V'
         ],
         remappings=[
-            ('/world/empty/model/rececar/joint_state','joint_states')
+            ('/world/empty/model/racecar/joint_state','joint_states')
         ],
         output='screen'
     )
@@ -59,10 +59,20 @@ def generate_launch_description():
         executable='rviz2',
         output='screen'
     )
+    #7.joint state publisher
+    node_joint_state_publisher = Node(
+            package='robot_joint_publisher',
+            executable='joint_state_publisher',
+            output='screen',
+            parameters=[{'use_sim_time': True}]
+        )
+    
 
     return LaunchDescription([
         node_robot_state_publisher,
+        node_joint_state_publisher,
         gazebo,
         spawn_entity,
+        bridge,
         rviz_node
     ])
